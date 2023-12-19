@@ -23,7 +23,8 @@
 }
 
 
-html, body {
+html,
+body {
     font-family: 'PoppinsRegular', 'Rubik', sans-serif;
     background-color: var(--color-background);
     color: var(--color-text);
@@ -34,7 +35,7 @@ b {
 }
 
 .hidden {
-    display: none!important;
+    display: none !important;
 }
 
 .color-primary {
@@ -46,21 +47,22 @@ a.navbar-brand {
 }
 
 .nav-link {
-    color: var(--color-black)!important;
-    padding-left: 35px!important;
-    padding-right: 35px!important;
+    color: var(--color-black) !important;
+    padding-left: 35px !important;
+    padding-right: 35px !important;
 }
 
 .btn-white {
     background-color: var(--color-white);
-    color: var(--color-black)!important;
+    color: var(--color-black) !important;
     border-radius: 20px;
     padding: 15px 25px;
     font-size: 20px;
-    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-.btn-white.active, .btn-white:hover {
+.btn-white.active,
+.btn-white:hover {
     background-color: var(--color-primary);
 }
 
@@ -106,11 +108,11 @@ a.navbar-brand {
 
 .btn-yellow {
     background-color: var(--color-primary);
-    color: var(--color-white)!important;
+    color: var(--color-white) !important;
     border-radius: 20px;
     padding: 15px 25px;
     font-size: 20px;
-    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 .btn-icon-left {
@@ -132,9 +134,9 @@ a.navbar-brand {
 }
 
 .btn-sm {
-    padding: 9px 15px!important;
-    border-radius: 15px!important;
-    font-size: 18px!important;
+    padding: 9px 15px !important;
+    border-radius: 15px !important;
+    font-size: 18px !important;
 }
 
 .btn-social {
@@ -162,8 +164,8 @@ a.navbar-brand {
     border-radius: 20px;
     padding: 15px 20px;
     font-size: 20px;
-    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1)!important;
-    border: none!important;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+    border: none !important;
 }
 
 .card-case {
@@ -201,7 +203,7 @@ a.navbar-brand {
     margin-bottom: 30px;
 }
 
-.card-icon {   
+.card-icon {
     height: 150px;
     margin: 0 auto;
     margin-bottom: 30px;
@@ -329,7 +331,7 @@ a.navbar-brand {
 }
 
 .card-item:hover .price-produto {
-    color: var(--color-black-heavy)!important;
+    color: var(--color-black-heavy) !important;
     margin-top: 20px;
 }
 
@@ -459,7 +461,9 @@ footer {
     width: 150px;
 }
 
-.container-logo-footer, .container-texto-footer, .container-redes-footer {
+.container-logo-footer,
+.container-texto-footer,
+.container-redes-footer {
     display: flex;
     align-items: center;
 }
@@ -523,7 +527,7 @@ footer {
     height: 35px;
     background-color: var(--color-white);
     border-radius: 50px;
-    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
     color: var(--color-black);
     display: flex;
     justify-content: center;
@@ -544,13 +548,20 @@ footer {
     content: none;
 }
 
-.etapa.active, .etapa.active::before  {
+.etapa.active,
+.etapa.active::before {
     background-color: var(--color-primary);
 }
 
 .title-carrinho {
     font-size: 20px;
     color: var(--color-black);
+}
+
+.troco-title {
+    color: var(--color-black);
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .modal-full .item-carrinho {
@@ -632,16 +643,16 @@ footer {
 
 .form-control {
     background-color: var(--color-white);
-    color: var(--color-black)!important;
+    color: var(--color-black) !important;
     border-radius: 20px;
     padding: 15px 25px;
     font-size: 20px;
-    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1)!important;
-    border: none!important;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+    border: none !important;
 }
 
 select.form-control {
-    height: 60px!important;
+    height: 60px !important;
 }
 
 .container-cep .form-control {
@@ -732,8 +743,8 @@ select.form-control {
     justify-content: center;
     align-items: center;
     font-size: 20px;
-    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
-    color: var(--color-black-heavy)!important;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    color: var(--color-black-heavy) !important;
     border-radius: 50px;
     cursor: pointer;
     z-index: 1;
@@ -779,4 +790,39 @@ select.form-control {
     margin: 0 auto;
     border-radius: 50px;
     margin-bottom: 10px;
+}
+
+.comer-no-local-ou-entrega, .botoes {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+    align-items: center;
+    justify-content: end;
+}
+
+.observacao {
+    border: 1px solid var(--color-primary) !important;
+    width: 100%;
+}
+
+.metodos {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 16px;
+}
+
+.metodos button {
+    flex-grow: 1;
+    width: 100%;
+}
+
+@media screen and (max-width: 900px) {
+    .comer-no-local-ou-entrega, .botoes {
+        flex-direction: column;
+    }
+
+    .comer-no-local-ou-entrega a, .botoes a {
+        width: 100%;
+    }
 }
