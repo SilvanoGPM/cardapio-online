@@ -133,6 +133,12 @@ a.navbar-brand {
     padding-top: 8px;
 }
 
+.btn-xs {
+    padding: 6px 10px !important;
+    border-radius: 15px !important;
+    font-size: 12px !important;
+}
+
 .btn-sm {
     padding: 9px 15px !important;
     border-radius: 15px !important;
@@ -556,6 +562,7 @@ footer {
 .title-carrinho {
     font-size: 20px;
     color: var(--color-black);
+    padding: 0;
 }
 
 .troco-title {
@@ -621,9 +628,16 @@ footer {
     margin-left: 15px;
 }
 
+.container-actions {
+    border-top: 1px solid var(--color-separate);
+    display: flex;
+    flex-direction: column;
+    padding-top: 8px;
+    gap: 8px;
+}
+
 .container-total {
     padding-top: 20px;
-    border-top: 1px solid var(--color-separate);
 }
 
 .container-total .texto-entrega {
@@ -792,8 +806,38 @@ select.form-control {
     margin-bottom: 10px;
 }
 
-.comer-no-local-ou-entrega, .botoes {
+#corpoPedido {
+    position: relative;
+    min-height: 100%;
+}
+
+#corpoPedido.carrinho {
+    padding-bottom: 150px;
+}
+
+.observacao-container {
+    position: absolute;
+    bottom: 0;
+}
+
+.horario-e-pessoas {
     display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.horario-e-pessoas .form-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.comer-no-local-ou-entrega,
+.botoes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
     width: 100%;
     gap: 8px;
     align-items: center;
@@ -808,21 +852,40 @@ select.form-control {
 .metodos {
     width: 100%;
     display: flex;
+    gap: 8px;
     align-items: center;
     padding-bottom: 16px;
+    flex-wrap: wrap;
 }
 
-.metodos button {
+.metodos .btn-pagamento {
     flex-grow: 1;
-    width: 100%;
+    flex: 1;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.metodos .btn-pagamento p {
+    margin: 0;
 }
 
 @media screen and (max-width: 900px) {
-    .comer-no-local-ou-entrega, .botoes {
+
+    .comer-no-local-ou-entrega,
+    .botoes {
         flex-direction: column;
+        margin-top: 8px;
     }
 
-    .comer-no-local-ou-entrega a, .botoes a {
+    .comer-no-local-ou-entrega a,
+    .botoes a {
         width: 100%;
+    }
+
+    .metodos .btn-pagamento {
+        width: 100%;
+        min-width: 100%;
     }
 }
