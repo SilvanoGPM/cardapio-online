@@ -183,17 +183,17 @@ cardapio.metodos = {
   },
 
   alterTelefone: () => {
-    celular = prompt('Insira o telefone');
+    celular = prompt("Insira o telefone");
 
     if (celular) {
       CELULAR_EMPRESA = celular;
-      
-      celular = celular.replace('55', '');
+
+      celular = celular.replace("55", "");
 
       let ddd = celular.slice(0, 2);
       let parte1 = celular.slice(2, 7);
       let parte2 = celular.slice(7);
-  
+
       let numeroFormatado = `(${ddd}) ${parte1}-${parte2}`;
 
       $("#empresaNumero").text(numeroFormatado);
@@ -704,6 +704,15 @@ cardapio.metodos = {
                 : "sem troco."
             }</b>
         </p>
+        ${
+          troco !== valorTotal
+            ? `<p class="texto-endereco">
+        <b>Troco: R$ ${Number(troco - valorTotal)
+          .toFixed(2)
+          .replace(".", ",")}</b>
+        </p>`
+            : ""
+        }
     </div>
     </div>
         `);
@@ -762,12 +771,15 @@ cardapio.metodos = {
 
         if (metodoPagamento === "dinheiro") {
           const trocoFormatado = Number(troco).toFixed(2).replace(".", ",");
+          const temTroco = troco !== valorTotal;
+
+          const trocoResultadoFormatado = Number(troco - valorTotal)
+            .toFixed(2)
+            .replace(".", ",");
 
           texto += `\n*Método de pagamento: Dinheiro, ${
-            troco !== valorTotal
-              ? `troco para R$ ${trocoFormatado}.`
-              : "sem troco."
-          }*\n`;
+            temTroco ? `troco para R$ ${trocoFormatado}.` : "sem troco."
+          }*\n${temTroco ? `*Troco*:* R$ ${trocoResultadoFormatado}\n` : ""}`;
         } else if (metodoPagamento === "pix") {
           texto += `\n*Método de pagamento: Pix*`;
         } else if (metodoPagamento === "cartao") {
@@ -784,11 +796,11 @@ cardapio.metodos = {
         texto += `\nHorário desejado: _${horario}_\n`;
       }
 
-      const valorDaEntrega = tipoDoPedido === "entrega" ? 0 : VALOR_ENTREGA;
-
       if (cpf) {
         texto += `\n*CPF na nota*: ${cpf}`;
       }
+
+      const valorDaEntrega = tipoDoPedido !== "entrega" ? 0 : VALOR_ENTREGA;
 
       texto += `\n*Total${
         tipoDoPedido !== "entrega" ? "" : " (com entrega)"
