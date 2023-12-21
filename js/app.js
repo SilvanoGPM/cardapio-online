@@ -777,13 +777,13 @@ cardapio.metodos = {
             .toFixed(2)
             .replace(".", ",");
 
-          texto += `\n*Método de pagamento: Dinheiro, ${
+          texto += `\n*Método de pagamento:* Dinheiro, ${
             temTroco ? `troco para R$ ${trocoFormatado}.` : "sem troco."
-          }*\n${temTroco ? `*Troco*:* R$ ${trocoResultadoFormatado}\n` : ""}`;
+          }\n${temTroco ? `*Troco:* R$ ${trocoResultadoFormatado}\n` : ""}`;
         } else if (metodoPagamento === "pix") {
-          texto += `\n*Método de pagamento: Pix*`;
+          texto += `\n*Método de pagamento:* Pix`;
         } else if (metodoPagamento === "cartao") {
-          texto += `\n*Método de pagamento: Cartão*\n`;
+          texto += `\n*Método de pagamento:* Cartão\n`;
         }
       } else if (tipoDoPedido === "reserva") {
         texto += "\n*Reserva:*";
