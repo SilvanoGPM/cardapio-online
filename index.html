@@ -75,7 +75,7 @@
               casa de forma rápida e segura.
             </p>
             <div class="wow fadeIn delay-05s">
-              <a class="btn btn-yellow mt-4 mr-3"> Ver cardápio </a>
+              <a class="btn btn-yellow mt-4 mr-3" href="#cardapio"> Ver cardápio </a>
               <a href="#" class="btn btn-white btn-icon-left mt-4" id="btnLigar">
                 <span class="icon-left">
                   <i class="fa fa-phone"></i>
@@ -398,7 +398,7 @@
       </div>
     </div>
 
-    <div class="m-body">
+    <div class="m-body" id="corpoViewer">
       <div class="container" id="corpoPedido">
         <div id="itensCarrinho" class="row mr-0 ml-0 mb-8 animated fadeIn hidden"></div>
 
@@ -542,6 +542,15 @@
             <div class="row" id="listaItensResumo"></div>
           </div>
 
+          <div id="cpfNaNota" class="form-group pl-3 mt-3 w-full hidden">
+            <label class="troco-title">CPF na nota:</label>
+            <p class="texto-entrega">
+              Informe seu CPF caso deseje ele na nota.
+            </p>
+            <input id="cpfCliente" maxlength="14" type="text" class="form-control" placeholder="ex: 123.456.789-10"
+              onchange="cardapio.metodos.finalizarPedido()" />
+          </div>
+
           <div class="col-12">
             <p class="title-carrinho mt-4">
               <b id="entregaLabel">Local da entrega:</b>
@@ -574,15 +583,6 @@
           </div>
 
           <div class="col-12" id="metodoPagamentoResumo"></div>
-
-          <div id="cpfNaNota" class="form-group pl-3 mt-3 w-full hidden">
-            <label class="troco-title">CPF na nota:</label>
-            <p class="texto-entrega">
-              Informe seu CPF caso deseje ele na nota.
-            </p>
-            <input id="cpfCliente" maxlength="14" type="text" class="form-control" placeholder="ex: 123.456.789-10"
-              onchange="cardapio.metodos.finalizarPedido()" />
-          </div>
         </div>
       </div>
     </div>

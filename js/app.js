@@ -183,6 +183,8 @@ cardapio.metodos = {
 
   // altera os texto e exibe os botões das etapas
   carregarEtapa: (etapa) => {
+    document.querySelector("#corpoViewer").scrollTo(0, 0);
+
     if (etapa == 1) {
       tipoDoPedido = null;
 
@@ -834,6 +836,7 @@ cardapio.metodos = {
 
     if (metodoPagamentoSelecionado === "dinheiro") {
       $("#trocoContainer").removeClass("hidden");
+      $("#troco").focus();
     } else {
       $("#trocoContainer").addClass("hidden");
     }
