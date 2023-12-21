@@ -15,6 +15,7 @@ var VALOR_CARRINHO = 0;
 var VALOR_ENTREGA = 7.5;
 
 var CELULAR_EMPRESA = "5587981356579";
+var MAPS_URL = "https://maps.app.goo.gl/4j4RWfTnApDd9ifq7";
 
 var ENDERECO_EMPRESA = {
   cep: "55291420",
@@ -179,6 +180,11 @@ cardapio.metodos = {
       $("body").css("overflow", "auto");
       $("#modalCarrinho").addClass("hidden");
     }
+  },
+
+  alterTelefone: () => {
+    CELULAR_EMPRESA = prompt('Insira o telefone');
+    cardapio.eventos.init();
   },
 
   // altera os texto e exibe os botões das etapas
@@ -641,6 +647,7 @@ cardapio.metodos = {
       $("#metodoPagamentoResumo").removeClass("hidden");
 
       $("#entregaLabel").text("Local da entrega:");
+      $("#empresaLink").attr("href", "#");
 
       $("#resumoEndereco").html(
         `${MEU_ENDERECO.endereco}, ${MEU_ENDERECO.numero}, ${MEU_ENDERECO.bairro}`
@@ -655,6 +662,7 @@ cardapio.metodos = {
       $("#metodoPagamentoResumo").removeClass("hidden");
 
       $("#entregaLabel").text(`Te esperamos aqui, ${nomeDoCliente}:`);
+      $("#empresaLink").attr("href", MAPS_URL);
 
       $("#resumoEndereco").html(
         `${ENDERECO_EMPRESA?.endereco}, ${ENDERECO_EMPRESA?.numero}, ${ENDERECO_EMPRESA?.bairro}`

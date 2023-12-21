@@ -76,7 +76,8 @@
             </p>
             <div class="wow fadeIn delay-05s">
               <a class="btn btn-yellow mt-4 mr-3" href="#cardapio"> Ver cardápio </a>
-              <a href="#" class="btn btn-white btn-icon-left mt-4" id="btnLigar">
+              <a href="#" onclick="event.preventDefault(); cardapio.metodos.alterTelefone();"
+                class="btn btn-white btn-icon-left mt-4" id="btnLigar">
                 <span class="icon-left">
                   <i class="fa fa-phone"></i>
                 </span>
@@ -557,7 +558,8 @@
             </p>
           </div>
 
-          <div class="col-12 item-carrinho resumo" style="border: 0;">
+          <a href="#" target="_blank" id="empresaLink" class="col-12 item-carrinho resumo"
+            style="border: 0; color: inherit">
             <div class="img-map">
               <i class="fas fa-map-marked-alt"></i>
             </div>
@@ -567,7 +569,7 @@
               </p>
               <p class="cidade-endereco" id="cidadeEndereco"></p>
             </div>
-          </div>
+          </a>
 
           <div class="pl-3 mt-3 rounded" id="empresaMaps" style="border-radius: 11px; overflow: hidden;">
             <iframe
