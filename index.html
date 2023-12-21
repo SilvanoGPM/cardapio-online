@@ -532,17 +532,17 @@
         </div>
 
         <div id="resumoCarrinho" class="row mr-0 ml-0 animated fadeIn hidden">
-          <div>
+          <div class="col-12">
             <p class="title-carrinho mt-4">
               <b>Itens do pedido:</b>
             </p>
           </div>
 
-          <div>
+          <div class="col-12">
             <div class="row" id="listaItensResumo"></div>
           </div>
 
-          <div>
+          <div class="col-12">
             <p class="title-carrinho mt-4">
               <b id="entregaLabel">Local da entrega:</b>
             </p>
@@ -567,13 +567,22 @@
               referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
 
-          <div id="metodoPagamentoTitle">
+          <div class="col-12" id="metodoPagamentoTitle">
             <p class="title-carrinho mt-4">
               <b>Método de pagamento:</b>
             </p>
           </div>
 
-          <div id="metodoPagamentoResumo"></div>
+          <div class="col-12" id="metodoPagamentoResumo"></div>
+
+          <div id="cpfNaNota" class="form-group pl-3 mt-3 w-full hidden">
+            <label class="troco-title">CPF na nota:</label>
+            <p class="texto-entrega">
+              Informe seu CPF caso deseje ele na nota.
+            </p>
+            <input id="cpfCliente" maxlength="14" type="text" class="form-control" placeholder="ex: 123.456.789-10"
+              onchange="cardapio.metodos.finalizarPedido()" />
+          </div>
         </div>
       </div>
     </div>

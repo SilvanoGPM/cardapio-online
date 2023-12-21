@@ -195,6 +195,7 @@ cardapio.metodos = {
       $("#metodoPagamento").addClass("hidden");
       $("#enderecoTitle").addClass("hidden");
       $("#resumoCarrinho").addClass("hidden");
+      $("#cpfNaNota").addClass("hidden");
 
       $("#observacaoContainer").removeClass("hidden");
 
@@ -226,6 +227,7 @@ cardapio.metodos = {
       $("#nomeContainer").removeClass("hidden");
       $("#horarioContainer").addClass("hidden");
       $("#pessoasContainer").addClass("hidden");
+      $("#cpfNaNota").addClass("hidden");
 
       if (tipoDoPedido === "reserva") {
         $("#lblTituloEtapa").text("Faça sua reserva:");
@@ -242,6 +244,7 @@ cardapio.metodos = {
         $("#metodoPagamento").removeClass("hidden");
       } else if (tipoDoPedido === "busca") {
         $("#lblTituloEtapa").text("Venha buscar:");
+        $("#horarioContainer").removeClass("hidden");
       }
     }
 
@@ -255,6 +258,7 @@ cardapio.metodos = {
       $("#resumoCarrinho").removeClass("hidden");
       $("#metodoPagamento").addClass("hidden");
       $("#enderecoTitle").addClass("hidden");
+      $("#cpfNaNota").removeClass("hidden");
 
       if (tipoDoPedido === "reserva" || tipoDoPedido == "busca") {
         $("#metodoPagamentoTitle").addClass("hidden");
@@ -507,6 +511,7 @@ cardapio.metodos = {
 
     if (tipoDoPedido === "busca") {
       let nomeVal = $("#nomeCliente").val().trim();
+      let horarioVal = $("#horario").val().trim();
 
       if (nomeVal.length <= 0) {
         cardapio.metodos.mensagem("Informe o seu nome, por favor.");
@@ -514,7 +519,14 @@ cardapio.metodos = {
         return;
       }
 
+      if (horarioVal.length <= 0) {
+        cardapio.metodos.mensagem("Informe o horário, por favor.");
+        $("#horario").focus();
+        return;
+      }
+
       nomeDoCliente = nomeVal;
+      horario = horarioVal;
 
       cardapio.metodos.carregarEtapa(3);
       cardapio.metodos.carregarResumo();
@@ -584,7 +596,9 @@ cardapio.metodos = {
       }
 
       if (trocoVal < valorTotal) {
-        cardapio.metodos.mensagem("O troco deve ser maior ou igual ao total.");
+        cardapio.metodos.mensagem(
+          "O valor de pagamento deve ser maior do que o total da compra."
+        );
         $("#troco").focus();
         return;
       }
@@ -654,7 +668,7 @@ cardapio.metodos = {
         const trocoFormatado = Number(troco).toFixed(2).replace(".", ",");
 
         $("#metodoPagamentoResumo").html(`
-      <div class="col-12 item-carrinho resumo">
+      <div class="col-12 pagamento-resumo">
         <div class="img-map">
         <i class="fas fa-money-bill"></i>
     </div>
@@ -671,7 +685,7 @@ cardapio.metodos = {
         `);
       } else if (metodoPagamento === "pix") {
         $("#metodoPagamentoResumo").html(`
-      <div class="col-12 item-carrinho resumo">
+      <div class="col-12 pagamento-resumo">
         <div class="img-map">
         <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16"
                                 viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
@@ -688,7 +702,7 @@ cardapio.metodos = {
         `);
       } else if (metodoPagamento === "cartao") {
         $("#metodoPagamentoResumo").html(`
-      <div class="col-12 item-carrinho resumo">
+      <div class="col-12 pagamento-resumo">
         <div class="img-map">
         <i class="fas fa-credit-card"></i>
     </div>
@@ -708,6 +722,8 @@ cardapio.metodos = {
   // Atualiza o link do botão do WhatsApp
   finalizarPedido: () => {
     if (MEU_CARRINHO.length > 0) {
+      var cpf = $("#cpfCliente").val().trim();
+
       var texto = "Olá! gostaria de fazer um pedido:\n";
       texto += `\n*Itens do pedido:*\n\n\${itens}`;
 
@@ -727,25 +743,30 @@ cardapio.metodos = {
             troco !== valorTotal
               ? `troco para R$ ${trocoFormatado}.`
               : "sem troco."
-          }*`;
+          }*\n`;
         } else if (metodoPagamento === "pix") {
           texto += `\n*Método de pagamento: Pix*`;
         } else if (metodoPagamento === "cartao") {
-          texto += `\n*Método de pagamento: Cartão*`;
+          texto += `\n*Método de pagamento: Cartão*\n`;
         }
       } else if (tipoDoPedido === "reserva") {
         texto += "\n*Reserva:*";
         texto += `\nNome: _${nomeDoCliente}_`;
         texto += `\nHorário: _${horario}_`;
-        texto += `\nQuantidade de pessoas: _${totalPessoas}_`;
+        texto += `\nQuantidade de pessoas: _${totalPessoas}_\n`;
       } else if (tipoDoPedido === "busca") {
         texto += `\n*Retirada no local:*`;
         texto += `\nNome: _${nomeDoCliente}_`;
+        texto += `\nHorário desejado: _${horario}_\n`;
       }
 
       const valorDaEntrega = tipoDoPedido === "entrega" ? 0 : VALOR_ENTREGA;
 
-      texto += `\n\n*Total${
+      if (cpf) {
+        texto += `\n*CPF na nota*: ${cpf}`;
+      }
+
+      texto += `\n*Total${
         tipoDoPedido !== "entrega" ? "" : " (com entrega)"
       }: R$ ${(VALOR_CARRINHO + valorDaEntrega).toFixed(2).replace(".", ",")}*`;
 

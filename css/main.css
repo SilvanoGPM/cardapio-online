@@ -562,7 +562,6 @@ footer {
 .title-carrinho {
     font-size: 20px;
     color: var(--color-black);
-    padding: 0;
 }
 
 .troco-title {
@@ -871,8 +870,13 @@ select.form-control {
     margin: 0;
 }
 
-@media screen and (max-width: 900px) {
+.pagamento-resumo {
+    display: flex;
+    align-items: center;
+    padding: 0 0 16px 0;
+}
 
+@media screen and (max-width: 900px) {
     .comer-no-local-ou-entrega,
     .botoes {
         flex-direction: column;
