@@ -183,8 +183,22 @@ cardapio.metodos = {
   },
 
   alterTelefone: () => {
-    CELULAR_EMPRESA = prompt('Insira o telefone');
-    cardapio.eventos.init();
+    celular = prompt('Insira o telefone');
+
+    if (celular) {
+      CELULAR_EMPRESA = celular;
+      
+      celular = celular.replace('55', '');
+
+      let ddd = celular.slice(0, 2);
+      let parte1 = celular.slice(2, 7);
+      let parte2 = celular.slice(7);
+  
+      let numeroFormatado = `(${ddd}) ${parte1}-${parte2}`;
+
+      $("#empresaNumero").text(numeroFormatado);
+      cardapio.eventos.init();
+    }
   },
 
   // altera os texto e exibe os botões das etapas

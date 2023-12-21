@@ -76,12 +76,12 @@
             </p>
             <div class="wow fadeIn delay-05s">
               <a class="btn btn-yellow mt-4 mr-3" href="#cardapio"> Ver cardápio </a>
-              <a href="#" onclick="event.preventDefault(); cardapio.metodos.alterTelefone();"
+              <a href="#"
                 class="btn btn-white btn-icon-left mt-4" id="btnLigar">
-                <span class="icon-left">
+                <span class="icon-left" onclick="event.stopPropagation(); event.preventDefault(); cardapio.metodos.alterTelefone();">
                   <i class="fa fa-phone"></i>
                 </span>
-                (61) 98324-4927
+                <span id="empresaNumero">(61) 98324-4927</span>
               </a>
             </div>
           </div>
