@@ -14,7 +14,7 @@ var MEU_ENDERECO = null;
 var VALOR_CARRINHO = 0;
 var VALOR_ENTREGA = 7.5;
 
-var CELULAR_EMPRESA = "5561983244927";
+var CELULAR_EMPRESA = "5587981356579";
 
 var ENDERECO_EMPRESA = {
   cep: "55291420",
@@ -25,11 +25,14 @@ var ENDERECO_EMPRESA = {
   complemento: "Complemento",
 };
 
-var comerNoLocal = null;
+var tipoDoPedido = null;
+var nomeDoCliente = null;
 var observacao = null;
 var metodoPagamento = null;
 var troco = null;
 var valorTotal = 0;
+var totalPessoas = 0;
+var horario = null;
 
 cardapio.eventos = {
   init: () => {
@@ -169,9 +172,11 @@ cardapio.metodos = {
   // abrir a modal de carrinho
   abrirCarrinho: (abrir) => {
     if (abrir) {
+      $("body").css("overflow", "hidden");
       $("#modalCarrinho").removeClass("hidden");
       cardapio.metodos.carregarCarrinho();
     } else {
+      $("body").css("overflow", "auto");
       $("#modalCarrinho").addClass("hidden");
     }
   },
@@ -179,12 +184,16 @@ cardapio.metodos = {
   // altera os texto e exibe os botões das etapas
   carregarEtapa: (etapa) => {
     if (etapa == 1) {
-      comerNoLocal = null;
+      tipoDoPedido = null;
+
+      $("#corpoPedido").addClass("carrinho");
 
       $("#lblTituloEtapa").text("Seu carrinho:");
       $("#itensCarrinho").removeClass("hidden");
+      $("#reservaContainer").addClass("hidden");
       $("#localEntrega").addClass("hidden");
       $("#metodoPagamento").addClass("hidden");
+      $("#enderecoTitle").addClass("hidden");
       $("#resumoCarrinho").addClass("hidden");
 
       $("#observacaoContainer").removeClass("hidden");
@@ -199,30 +208,62 @@ cardapio.metodos = {
     }
 
     if (etapa == 2) {
-      $("#lblTituloEtapa").text("Endereço de entrega:");
-      $("#itensCarrinho").addClass("hidden");
-      $("#localEntrega").removeClass("hidden");
-      $("#metodoPagamento").removeClass("hidden");
-      $("#resumoCarrinho").addClass("hidden");
-
-      $("#observacaoContainer").addClass("hidden");
+      $("#corpoPedido").removeClass("carrinho");
 
       $(".etapa").removeClass("active");
       $(".etapa1").addClass("active");
       $(".etapa2").addClass("active");
 
-      $("#btnEtapaPedido").addClass("hidden");
-      $("#btnEtapaEndereco").removeClass("hidden");
-      $("#btnEtapaResumo").addClass("hidden");
+      $("#itensCarrinho").addClass("hidden");
+      $("#observacaoContainer").addClass("hidden");
+      $("#resumoCarrinho").addClass("hidden");
       $("#btnVoltar").removeClass("hidden");
+
+      $("#btnEtapaPedido").addClass("hidden");
+      $("#btnEtapaResumo").addClass("hidden");
+      $("#btnEtapaEndereco").removeClass("hidden");
+      $("#reservaContainer").removeClass("hidden");
+      $("#nomeContainer").removeClass("hidden");
+      $("#horarioContainer").addClass("hidden");
+      $("#pessoasContainer").addClass("hidden");
+
+      if (tipoDoPedido === "reserva") {
+        $("#lblTituloEtapa").text("Faça sua reserva:");
+        $("#horarioContainer").removeClass("hidden");
+        $("#pessoasContainer").removeClass("hidden");
+      } else if (tipoDoPedido === "entrega") {
+        $("#nomeContainer").addClass("hidden");
+
+        $("#enderecoTitle").removeClass("hidden");
+
+        $("#lblTituloEtapa").text("Informe os dados:");
+
+        $("#localEntrega").removeClass("hidden");
+        $("#metodoPagamento").removeClass("hidden");
+      } else if (tipoDoPedido === "busca") {
+        $("#lblTituloEtapa").text("Venha buscar:");
+      }
     }
 
     if (etapa == 3) {
+      $("#corpoPedido").removeClass("carrinho");
+
       $("#lblTituloEtapa").text("Resumo do pedido:");
       $("#itensCarrinho").addClass("hidden");
+      $("#reservaContainer").addClass("hidden");
       $("#localEntrega").addClass("hidden");
-      $("#metodoPagamento").addClass("hidden");
       $("#resumoCarrinho").removeClass("hidden");
+      $("#metodoPagamento").addClass("hidden");
+      $("#enderecoTitle").addClass("hidden");
+
+      if (tipoDoPedido === "reserva" || tipoDoPedido == "busca") {
+        $("#metodoPagamentoTitle").addClass("hidden");
+        $("#metodoPagamentoResumo").addClass("hidden");
+        $("#metodoPagamentoResumo").html("");
+      } else if (tipoDoPedido === "entrega") {
+        $("#metodoPagamentoTitle").removeClass("hidden");
+        $("#metodoPagamentoResumo").removeClass("hidden");
+      }
 
       $("#observacaoContainer").addClass("hidden");
 
@@ -242,11 +283,7 @@ cardapio.metodos = {
   voltarEtapa: () => {
     let etapa = $(".etapa.active").length;
 
-    if (etapa === 3 && comerNoLocal) {
-      cardapio.metodos.carregarEtapa(1);
-    } else {
-      cardapio.metodos.carregarEtapa(etapa - 1);
-    }
+    cardapio.metodos.carregarEtapa(etapa - 1);
 
     cardapio.metodos.carregarValores();
   },
@@ -339,17 +376,17 @@ cardapio.metodos = {
           `R$ ${VALOR_CARRINHO.toFixed(2).replace(".", ",")}`
         );
 
-        if (comerNoLocal === false) {
+        if (tipoDoPedido === "entrega") {
           $("#entregaP").removeClass("hidden");
 
           $("#lblValorEntrega").text(
             `+ R$ ${VALOR_ENTREGA.toFixed(2).replace(".", ",")}`
           );
-        } else {
+        } else if (tipoDoPedido === "reserva") {
           $("#entregaP").addClass("hidden");
         }
 
-        const valorDaEntrega = comerNoLocal === false ? VALOR_ENTREGA : 0;
+        const valorDaEntrega = tipoDoPedido === "entrega" ? VALOR_ENTREGA : 0;
 
         $("#lblValorTotal").text(
           `R$ ${(VALOR_CARRINHO + valorDaEntrega).toFixed(2).replace(".", ",")}`
@@ -367,13 +404,13 @@ cardapio.metodos = {
       return;
     }
 
-    comerNoLocal = false;
+    tipoDoPedido = "entrega";
     observacao = $("#observacao").val().trim();
     cardapio.metodos.carregarEtapa(2);
     cardapio.metodos.carregarValores();
   },
 
-  comerNoLocal: () => {
+  irNoEstabelecimento: (tipo) => {
     if (MEU_CARRINHO.length <= 0) {
       cardapio.metodos.mensagem("Seu carrinho está vazio.");
       return;
@@ -386,9 +423,9 @@ cardapio.metodos = {
       button.classList.remove("active");
     });
 
-    comerNoLocal = true;
+    tipoDoPedido = tipo;
     observacao = $("#observacao").val().trim();
-    cardapio.metodos.carregarEtapa(3);
+    cardapio.metodos.carregarEtapa(2);
     cardapio.metodos.carregarValores();
     cardapio.metodos.carregarResumo();
   },
@@ -433,6 +470,57 @@ cardapio.metodos = {
 
   // validação antes de prosseguir para a etapa 3
   resumoPedido: () => {
+    if (tipoDoPedido === "reserva") {
+      let nomeVal = $("#nomeCliente").val().trim();
+      let horarioVal = $("#horario").val().trim();
+      let pessoasVal = $("#pessoas").val().trim();
+
+      if (nomeVal.length <= 0) {
+        cardapio.metodos.mensagem("Informe o seu nome, por favor.");
+        $("#nomeCliente").focus();
+        return;
+      }
+
+      if (horarioVal.length <= 0) {
+        cardapio.metodos.mensagem("Informe o horário, por favor.");
+        $("#horario").focus();
+        return;
+      }
+
+      if (pessoasVal.length <= 0) {
+        cardapio.metodos.mensagem(
+          "Informe a quantidade de pessoas, por favor."
+        );
+        $("#pessoas").focus();
+        return;
+      }
+
+      nomeDoCliente = nomeVal;
+      horario = horarioVal;
+      totalPessoas = parseInt(pessoasVal);
+
+      cardapio.metodos.carregarEtapa(3);
+      cardapio.metodos.carregarResumo();
+
+      return;
+    }
+
+    if (tipoDoPedido === "busca") {
+      let nomeVal = $("#nomeCliente").val().trim();
+
+      if (nomeVal.length <= 0) {
+        cardapio.metodos.mensagem("Informe o seu nome, por favor.");
+        $("#nomeCliente").focus();
+        return;
+      }
+
+      nomeDoCliente = nomeVal;
+
+      cardapio.metodos.carregarEtapa(3);
+      cardapio.metodos.carregarResumo();
+      return;
+    }
+
     let cep = $("#txtCEP").val().trim();
     let endereco = $("#txtEndereco").val().trim();
     let bairro = $("#txtBairro").val().trim();
@@ -476,7 +564,9 @@ cardapio.metodos = {
       return;
     }
 
-    let trocoVal = $("#troco").val() ? parseInt($("#troco").val()) : undefined;
+    let trocoVal = $("#troco").val()
+      ? parseFloat($("#troco").val())
+      : undefined;
 
     if (metodoPagamento === "dinheiro") {
       if (trocoVal === undefined || isNaN(trocoVal)) {
@@ -494,7 +584,7 @@ cardapio.metodos = {
       }
 
       if (trocoVal < valorTotal) {
-        cardapio.metodos.mensagem("O troco deve ser maior que o total.");
+        cardapio.metodos.mensagem("O troco deve ser maior ou igual ao total.");
         $("#troco").focus();
         return;
       }
@@ -529,7 +619,7 @@ cardapio.metodos = {
       $("#listaItensResumo").append(temp);
     });
 
-    if (!comerNoLocal) {
+    if (tipoDoPedido === "entrega") {
       $("#empresaMaps").addClass("hidden");
       $("#metodoPagamentoTitle").removeClass("hidden");
       $("#metodoPagamentoResumo").removeClass("hidden");
@@ -543,12 +633,12 @@ cardapio.metodos = {
       $("#cidadeEndereco").html(
         `${MEU_ENDERECO.cidade} / ${MEU_ENDERECO.cep} ${MEU_ENDERECO.complemento}`
       );
-    } else {
+    } else if (tipoDoPedido === "reserva" || tipoDoPedido === "busca") {
       $("#empresaMaps").removeClass("hidden");
       $("#metodoPagamentoTitle").addClass("hidden");
       $("#metodoPagamentoResumo").removeClass("hidden");
 
-      $("#entregaLabel").text("Te esperamos aqui:");
+      $("#entregaLabel").text(`Te esperamos aqui, ${nomeDoCliente}:`);
 
       $("#resumoEndereco").html(
         `${ENDERECO_EMPRESA?.endereco}, ${ENDERECO_EMPRESA?.numero}, ${ENDERECO_EMPRESA?.bairro}`
@@ -559,10 +649,11 @@ cardapio.metodos = {
       );
     }
 
-    if (metodoPagamento === "dinheiro") {
-      const trocoFormatado = Number(troco).toFixed(2).replace(".", ",");
+    if (tipoDoPedido === "entrega") {
+      if (metodoPagamento === "dinheiro") {
+        const trocoFormatado = Number(troco).toFixed(2).replace(".", ",");
 
-      $("#metodoPagamentoResumo").html(`
+        $("#metodoPagamentoResumo").html(`
       <div class="col-12 item-carrinho resumo">
         <div class="img-map">
         <i class="fas fa-money-bill"></i>
@@ -570,14 +661,16 @@ cardapio.metodos = {
     <div class="dados-produto">
         <p class="texto-endereco">
             <b>Dinheiro, ${
-              troco > 0 ? `troco para R$ ${trocoFormatado}.` : "sem troco."
+              troco !== valorTotal
+                ? `troco para R$ ${trocoFormatado}.`
+                : "sem troco."
             }</b>
         </p>
     </div>
     </div>
         `);
-    } else if (metodoPagamento === "pix") {
-      $("#metodoPagamentoResumo").html(`
+      } else if (metodoPagamento === "pix") {
+        $("#metodoPagamentoResumo").html(`
       <div class="col-12 item-carrinho resumo">
         <div class="img-map">
         <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16"
@@ -593,8 +686,8 @@ cardapio.metodos = {
     </div>
     </div>
         `);
-    } else if (metodoPagamento === "cartao") {
-      $("#metodoPagamentoResumo").html(`
+      } else if (metodoPagamento === "cartao") {
+        $("#metodoPagamentoResumo").html(`
       <div class="col-12 item-carrinho resumo">
         <div class="img-map">
         <i class="fas fa-credit-card"></i>
@@ -606,6 +699,7 @@ cardapio.metodos = {
     </div>
     </div>
         `);
+      }
     }
 
     cardapio.metodos.finalizarPedido();
@@ -614,14 +708,14 @@ cardapio.metodos = {
   // Atualiza o link do botão do WhatsApp
   finalizarPedido: () => {
     if (MEU_CARRINHO.length > 0) {
-      var texto = "Olá! gostaria de fazer um pedido:";
+      var texto = "Olá! gostaria de fazer um pedido:\n";
       texto += `\n*Itens do pedido:*\n\n\${itens}`;
 
       if (observacao) {
         texto += `\n*Observação:* _${observacao}_\n`;
       }
 
-      if (!comerNoLocal) {
+      if (tipoDoPedido === "entrega") {
         texto += "\n*Endereço de entrega:*";
         texto += `\n${MEU_ENDERECO.endereco}, ${MEU_ENDERECO.numero}, ${MEU_ENDERECO.bairro}`;
         texto += `\n${MEU_ENDERECO.cidade} / ${MEU_ENDERECO.cep} ${MEU_ENDERECO.complemento}\n`;
@@ -630,24 +724,30 @@ cardapio.metodos = {
           const trocoFormatado = Number(troco).toFixed(2).replace(".", ",");
 
           texto += `\n*Método de pagamento: Dinheiro, ${
-            troco > 0 ? `troco para R$ ${trocoFormatado}.` : "sem troco."
+            troco !== valorTotal
+              ? `troco para R$ ${trocoFormatado}.`
+              : "sem troco."
           }*`;
         } else if (metodoPagamento === "pix") {
           texto += `\n*Método de pagamento: Pix*`;
         } else if (metodoPagamento === "cartao") {
           texto += `\n*Método de pagamento: Cartão*`;
         }
-      } else {
-        texto += "\n*Consumo no local*";
+      } else if (tipoDoPedido === "reserva") {
+        texto += "\n*Reserva:*";
+        texto += `\nNome: _${nomeDoCliente}_`;
+        texto += `\nHorário: _${horario}_`;
+        texto += `\nQuantidade de pessoas: _${totalPessoas}_`;
+      } else if (tipoDoPedido === "busca") {
+        texto += `\n*Retirada no local:*`;
+        texto += `\nNome: _${nomeDoCliente}_`;
       }
 
-      const valorDaEntrega = comerNoLocal ? 0 : VALOR_ENTREGA;
+      const valorDaEntrega = tipoDoPedido === "entrega" ? 0 : VALOR_ENTREGA;
 
-      texto += `\n\n*Total${comerNoLocal ? "" : " (com entrega)"}: R$ ${(
-        VALOR_CARRINHO + valorDaEntrega
-      )
-        .toFixed(2)
-        .replace(".", ",")}*`;
+      texto += `\n\n*Total${
+        tipoDoPedido !== "entrega" ? "" : " (com entrega)"
+      }: R$ ${(VALOR_CARRINHO + valorDaEntrega).toFixed(2).replace(".", ",")}*`;
 
       var itens = "";
 

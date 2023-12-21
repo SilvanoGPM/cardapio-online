@@ -1,737 +1,650 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Restaurante - Seja bem-vindo!</title>
 
-    <link rel="stylesheet" href="./css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./css/fontawesome.css" />
-    <link rel="stylesheet" href="./css/animate.css" />
-    <link rel="stylesheet" href="./css/main.css" />
-    <link rel="stylesheet" href="./css/responsivo.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restaurante - Seja bem-vindo!</title>
 
-  <body>
-    <div class="container-mensagens" id="container-mensagens"></div>
+  <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./css/fontawesome.css" />
+  <link rel="stylesheet" href="./css/animate.css" />
+  <link rel="stylesheet" href="./css/main.css" />
+  <link rel="stylesheet" href="./css/responsivo.css" />
+</head>
 
-    <a
-      class="botao-carrinho animated bounceIn hidden"
-      onclick="cardapio.metodos.abrirCarrinho(true)"
-    >
-      <div class="badge-total-carrinho">0</div>
-      <i class="fa fa-shopping-bag"></i>
-    </a>
+<body>
+  <div class="container-mensagens" id="container-mensagens"></div>
 
-    <section class="header">
-      <div class="container">
-        <nav class="navbar navbar-expand-lg pl-0 pr-0 col-one">
-          <a class="navbar-brand wow fadeIn" href="#">
-            <img src="./img/logo.png" width="160" class="img-logo" />
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNavDropdown"
-          >
-            <span class="navbar-toggler-icon">
-              <i class="fas fa-bars"></i>
+  <a class="botao-carrinho animated bounceIn hidden" onclick="cardapio.metodos.abrirCarrinho(true)">
+    <div class="badge-total-carrinho">0</div>
+    <i class="fa fa-shopping-bag"></i>
+  </a>
+
+  <section class="header">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg pl-0 pr-0 col-one">
+        <a class="navbar-brand wow fadeIn" href="#">
+          <img src="./img/logo.png" width="160" class="img-logo" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
+          <span class="navbar-toggler-icon">
+            <i class="fas fa-bars"></i>
+          </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto mr-auto wow fadeIn">
+            <li class="nav-item">
+              <a href="#reservas" class="nav-link"><b>Reservas</b></a>
+            </li>
+            <li class="nav-item">
+              <a href="#servicos" class="nav-link"><b>Serviços</b></a>
+            </li>
+            <li class="nav-item">
+              <a href="#cardapio" class="nav-link"><b>Cardápio</b></a>
+            </li>
+            <li class="nav-item">
+              <a href="#depoimentos" class="nav-link"><b>Depoimentos</b></a>
+            </li>
+          </ul>
+          <a class="btn btn-white btn-icon wow fadeIn" onclick="cardapio.metodos.abrirCarrinho(true)">
+            Meu carrinho
+            <span class="icon">
+              <div class="container-total-carrinho badge-total-carrinho hidden">
+                0
+              </div>
+              <i class="fa fa-shopping-bag"></i>
             </span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto mr-auto wow fadeIn">
-              <li class="nav-item">
-                <a href="#reservas" class="nav-link"><b>Reservas</b></a>
-              </li>
-              <li class="nav-item">
-                <a href="#servicos" class="nav-link"><b>Serviços</b></a>
-              </li>
-              <li class="nav-item">
-                <a href="#cardapio" class="nav-link"><b>Cardápio</b></a>
-              </li>
-              <li class="nav-item">
-                <a href="#depoimentos" class="nav-link"><b>Depoimentos</b></a>
-              </li>
-            </ul>
-            <a
-              class="btn btn-white btn-icon wow fadeIn"
-              onclick="cardapio.metodos.abrirCarrinho(true)"
-            >
-              Meu carrinho
-              <span class="icon">
-                <div
-                  class="container-total-carrinho badge-total-carrinho hidden"
-                >
-                  0
-                </div>
-                <i class="fa fa-shopping-bag"></i>
-              </span>
-            </a>
-          </div>
-        </nav>
-      </div>
-    </section>
-
-    <section class="banner">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-lg-6 col-md-6 col-sm-12 col-one">
-            <div class="d-flex text-banner">
-              <h1 class="wow fadeInLeft">
-                <b>Escolha sua comida <b class="color-primary">favorita.</b></b>
-              </h1>
-              <p class="wow fadeInLeft delay-02s">
-                Aproveite nosso cardápio! Escolha o que desejar e recebe em sua
-                casa de forma rápida e segura.
-              </p>
-              <div class="wow fadeIn delay-05s">
-                <a href="#cardapio" class="btn btn-yellow mt-4 mr-3">
-                  Ver cardápio
-                </a>
-                <a
-                  href="#"
-                  class="btn btn-white btn-icon-left mt-4"
-                  id="btnLigar"
-                >
-                  <span class="icon-left">
-                    <i class="fa fa-phone"></i>
-                  </span>
-                  (61) 98324-4927
-                </a>
-              </div>
-            </div>
-            <a
-              href="https://www.instagram.com/limafront/"
-              target="_blank"
-              class="btn btn-sm btn-white btn-social mt-4 mr-3 wow fadeIn delay-05s"
-            >
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a
-              class="btn btn-sm btn-white btn-social mt-4 mr-3 wow fadeIn delay-05s"
-            >
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a
-              class="btn btn-sm btn-white btn-social mt-4 wow fadeIn delay-05s"
-            >
-              <i class="fab fa-whatsapp"></i>
-            </a>
-          </div>
-
-          <div class="col-6 no-mobile">
-            <div class="card-banner wow fadeIn delay-02s"></div>
-            <div class="d-flex img-banner wow fadeIn delay-05s">
-              <img src="./img/burguer.png" />
-            </div>
-            <div class="card card-case wow fadeInRight delay-07s">
-              "Entrega rápida e funcionários simpáticos.
-              <br />A comida chegou quente e <br />
-              muito saborosa!"
-              <span class="card-case-name">
-                <b>Thiago Lopes</b>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="servicos" id="servicos">
-      <div class="background-servicos"></div>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-one text-center mb-5 wow fadeIn">
-            <span class="hint-title"><b>Serviços</b></span>
-            <h1 class="title">
-              <b>Como são nossos serviços?</b>
-            </h1>
-          </div>
-
-          <div
-            class="col-12 col-lg-4 col-md-4 col-sm-12 col-one mb-5 wow fadeInUp"
-          >
-            <div class="card-icon text-center">
-              <img src="./img/icone-pedido.svg" width="150" />
-            </div>
-            <div class="card-text text-center mt-3">
-              <p><b>Fácil de pedir</b></p>
-              <span>
-                Você só precisa de alguns passos para pedir sua comida.
-              </span>
-            </div>
-          </div>
-
-          <div
-            class="col-12 col-lg-4 col-md-4 col-sm-12 col-one mb-5 wow fadeInUp"
-          >
-            <div class="card-icon text-center">
-              <img src="./img/icone-delivery.svg" width="250" />
-            </div>
-            <div class="card-text text-center mt-3">
-              <p><b>Entrega rápida</b></p>
-              <span> Nossa entrega é sempre pontual, rápida e segura. </span>
-            </div>
-          </div>
-
-          <div
-            class="col-12 col-lg-4 col-md-4 col-sm-12 col-one mb-5 wow fadeInUp"
-          >
-            <div class="card-icon text-center">
-              <img src="./img/icone-qualidade.svg" width="250" />
-            </div>
-            <div class="card-text text-center mt-3">
-              <p><b>Melhor qualidade</b></p>
-              <span>
-                Não só a rapidez na entrega, a qualidade também é o nosso forte.
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cardapio" id="cardapio">
-      <div class="background-cardapio"></div>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-one text-center mb-5 wow fadeIn">
-            <span class="hint-title"><b>Cardápio</b></span>
-            <h1 class="title">
-              <b>Conheça o nosso cardápio</b>
-            </h1>
-          </div>
-
-          <div class="col-12 col-one container-menu wow fadeInUp">
-            <a
-              id="menu-burgers"
-              class="btn btn-white btn-sm mr-3 active"
-              onclick="cardapio.metodos.obterItensCardapio('burgers')"
-            >
-              <i class="fas fa-hamburger"></i>&nbsp; Burgers
-            </a>
-            <a
-              id="menu-pizzas"
-              class="btn btn-white btn-sm mr-3"
-              onclick="cardapio.metodos.obterItensCardapio('pizzas')"
-            >
-              <i class="fas fa-pizza-slice"></i>&nbsp; Pizzas
-            </a>
-            <a
-              id="menu-churrasco"
-              class="btn btn-white btn-sm mr-3"
-              onclick="cardapio.metodos.obterItensCardapio('churrasco')"
-            >
-              <i class="fas fa-drumstick-bite"></i>&nbsp; Churrasco
-            </a>
-            <a
-              id="menu-steaks"
-              class="btn btn-white btn-sm mr-3"
-              onclick="cardapio.metodos.obterItensCardapio('steaks')"
-            >
-              <i class="fas fa-bacon"></i>&nbsp; Steaks
-            </a>
-            <a
-              id="menu-bebidas"
-              class="btn btn-white btn-sm mr-3"
-              onclick="cardapio.metodos.obterItensCardapio('bebidas')"
-            >
-              <i class="fas fa-cocktail"></i>&nbsp; Bebidas
-            </a>
-            <a
-              id="menu-sobremesas"
-              class="btn btn-white btn-sm mr-3"
-              onclick="cardapio.metodos.obterItensCardapio('sobremesas')"
-            >
-              <i class="fas fa-ice-cream"></i>&nbsp; Sobremesas
-            </a>
-          </div>
-
-          <div class="col-12 col-one">
-            <div class="row" id="itensCardapio"></div>
-          </div>
-
-          <div class="col-12 col-one text-center wow fadeInUp">
-            <a
-              id="btnVerMais"
-              class="btn btn-white btn-sm"
-              onclick="cardapio.metodos.verMais()"
-            >
-              Ver mais
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="depoimentos" id="depoimentos">
-      <div class="background-depoimentos"></div>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-5 no-mobile text-center">
-            <div class="card-depoimentos wow fadeIn"></div>
-            <div class="d-flex img-banner wow fadeInLeft delay-02s">
-              <img src="./img/pizzas.png" />
-            </div>
-          </div>
-
-          <div class="col-12 col-lg-7 col-md-7 col-sm-12 col-one">
-            <span class="hint-title wow fadeIn"><b>Depoimentos</b></span>
-            <h1 class="title wow fadeIn">
-              <b>O que dizem sobre nós?</b>
-            </h1>
-            <div class="mb-5">
-              <div class="depoimento animated fadeIn" id="depoimento-1">
-                <div class="container-dados-depoimento">
-                  <div class="imagem-depoimento"></div>
-                  <div>
-                    <p class="nome-depoimento"><b>Diego Pereira</b></p>
-                    <p class="nota-depoimento">
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star-half-alt"></i>&nbsp;
-                      <span>4.5</span>
-                    </p>
-                  </div>
-                </div>
-                <p class="texto-depoimento">
-                  <i class="fas fa-quote-left"></i>
-                  <span>
-                    Muito bom, recomendo demais! Comida muito bem feita pelo
-                    chefe, atendimento dentro dos parâmetros e boa comunicação
-                    com o cliente.
-                  </span>
-                  <i class="fas fa-quote-right"></i>
-                </p>
-              </div>
-
-              <div class="depoimento animated fadeIn hidden" id="depoimento-2">
-                <div class="container-dados-depoimento">
-                  <div class="imagem-depoimento"></div>
-                  <div>
-                    <p class="nome-depoimento"><b>Ana Beatriz</b></p>
-                    <p class="nota-depoimento">
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>&nbsp; <span>5.0</span>
-                    </p>
-                  </div>
-                </div>
-                <p class="texto-depoimento">
-                  <i class="fas fa-quote-left"></i>
-                  <span>
-                    Um jantar perfeito do começo ao fim. Comida, experiência,
-                    serviço... foi tão maravilhoso que fomos dois dias seguidos
-                    - fato inédito para mim em uma viagem.
-                  </span>
-                  <i class="fas fa-quote-right"></i>
-                </p>
-              </div>
-
-              <div class="depoimento animated fadeIn hidden" id="depoimento-3">
-                <div class="container-dados-depoimento">
-                  <div class="imagem-depoimento"></div>
-                  <div>
-                    <p class="nome-depoimento"><b>João Guilherme</b></p>
-                    <p class="nota-depoimento">
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="far fa-star"></i>&nbsp; <span>4.0</span>
-                    </p>
-                  </div>
-                </div>
-                <p class="texto-depoimento">
-                  <i class="fas fa-quote-left"></i>
-                  <span>
-                    A comida estava excelente e o serviço gentil nos
-                    surpreendeu! Dica: reserve umas 3 horas para ter uma
-                    experiência incrível.
-                  </span>
-                  <i class="fas fa-quote-right"></i>
-                </p>
-              </div>
-            </div>
-
-            <a
-              id="btnDepoimento-1"
-              class="btn btn-sm btn-white btn-social wow fadeIn mr-3 active"
-              onclick="cardapio.metodos.abrirDepoimento(1)"
-              >1</a
-            >
-            <a
-              id="btnDepoimento-2"
-              class="btn btn-sm btn-white btn-social wow fadeIn mr-3"
-              onclick="cardapio.metodos.abrirDepoimento(2)"
-              >2</a
-            >
-            <a
-              id="btnDepoimento-3"
-              class="btn btn-sm btn-white btn-social wow fadeIn"
-              onclick="cardapio.metodos.abrirDepoimento(3)"
-              >3</a
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="reserva" id="reservas">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-one">
-            <div class="card-secondary wow fadeInUp">
-              <div class="row">
-                <div class="col-12 col-lg-7 col-md-7 col-sm-12">
-                  <span class="hint-title"><b>Reserva</b></span>
-                  <h1 class="title">
-                    <b>Quer reservar um horário?</b>
-                  </h1>
-                  <p class="pr-5">
-                    Mande uma mensagem clicando no botão abaixo
-                    <br />
-                    Reserve sua data e horário de forma simples e rápida.
-                  </p>
-                  <a
-                    class="btn btn-yellow mt-4 wow fadeIn delay-05s"
-                    href="#"
-                    id="btnReserva"
-                    target="_blank"
-                  >
-                    Fazer reserva
-                  </a>
-                </div>
-
-                <div class="col-5 no-mobile">
-                  <div class="card-reserva"></div>
-                  <div class="d-flex img-banner">
-                    <img src="./img/icone-reserva.svg" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div
-            class="col-12 col-lg-3 col-md-3 col-sm-12 col-one container-logo-footer wow fadeIn"
-          >
-            <img class="logo-footer" src="./img/logo.png" />
-          </div>
-
-          <div
-            class="col-12 col-lg-6 col-md-6 col-sm-12 col-one container-texto-footer wow fadeIn"
-          >
-            <p class="mb-0">
-              <b>Menu On-line</b> &copy; Todos os direitos reservados
-            </p>
-          </div>
-
-          <div
-            class="col-12 col-lg-3 col-md-3 col-sm-12 col-one container-redes-footer wow fadeIn"
-          >
-            <a class="btn btn-sm btn-white btn-social mr-3">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a class="btn btn-sm btn-white btn-social mr-3">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a class="btn btn-sm btn-white btn-social">
-              <i class="fab fa-whatsapp"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <div class="modal-full animated fadeIn hidden" id="modalCarrinho">
-      <div class="m-header">
-        <div class="container">
-          <a
-            class="btn btn-white btn-sm float-right"
-            onclick="cardapio.metodos.abrirCarrinho(false)"
-          >
-            Fechar
           </a>
-          <div class="etapas">
-            <div class="etapa etapa1 active">1</div>
-            <div class="etapa etapa2">2</div>
-            <div class="etapa etapa3">3</div>
-          </div>
-          <p class="title-carrinho mt-4">
-            <b id="lblTituloEtapa">Seu carrinho:</b>
-          </p>
         </div>
-      </div>
+      </nav>
+    </div>
+  </section>
 
-      <div class="m-body">
-        <div class="container" id="corpoPedido">
-          <div
-            id="itensCarrinho"
-            class="row mr-0 ml-0 animated fadeIn hidden"
-          ></div>
-
-          <div class="observacao-container" id="observacaoContainer">
-            <div class="form-group">
-              <label>Observação:</label>
-              <textarea
-                id="observacao"
-                class="form-control observacao"
-                placeholder="ex: Tire as cebolas"
-              ></textarea>
-            </div>
-          </div>
-
-          <div id="localEntrega" class="row mr-0 ml-0 animated fadeIn hidden">
-            <div class="col-12 col-lg-4 col-md-4 col-sm-12">
-              <div class="form-group container-cep">
-                <label>CEP:</label>
-                <input id="txtCEP" type="text" class="form-control" />
-                <a
-                  class="btn btn-yellow btn-sm"
-                  onclick="cardapio.metodos.buscarCep()"
-                >
-                  <i class="fa fa-search"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="col-8 no-mobile"></div>
-
-            <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-              <div class="form-group">
-                <label>Endereço:</label>
-                <input id="txtEndereco" type="text" class="form-control" />
-              </div>
-            </div>
-
-            <div class="col-12 col-lg-4 col-md-4 col-sm-12">
-              <div class="form-group">
-                <label>Bairro:</label>
-                <input id="txtBairro" type="text" class="form-control" />
-              </div>
-            </div>
-
-            <div class="col-12 col-lg-2 col-md-2 col-sm-12">
-              <div class="form-group">
-                <label>Número:</label>
-                <input id="txtNumero" type="text" class="form-control" />
-              </div>
-            </div>
-
-            <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-              <div class="form-group">
-                <label>Cidade:</label>
-                <input id="txtCidade" type="text" class="form-control" />
-              </div>
-            </div>
-
-            <div class="col-12 col-lg-4 col-md-4 col-sm-12">
-              <div class="form-group">
-                <label>Complemento:</label>
-                <input id="txtComplemento" type="text" class="form-control" />
-              </div>
-            </div>
-          </div>
-
-          <div id="metodoPagamento" class="hidden">
-            <div class="col-12">
-              <p class="title-carrinho mt-4">
-                <b>Método de Pagamento:</b>
-              </p>
-            </div>
-
-            <div class="metodos pl-2">
-              <button
-                data-js="metodo-pix"
-                onclick="cardapio.metodos.alterarMetodoPagamento('pix')"
-                class="btn btn-white btn-sm mr-3"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="16"
-                  width="16"
-                  viewBox="0 0 512 512"
-                >
-                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
-                  <path
-                    d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C353.7 383.7 372.6 391.5 392.6 391.5H407.7L310.6 488.6C280.3 518.1 231.1 518.1 200.8 488.6L103.3 391.2H112.6C132.6 391.2 151.5 383.4 165.7 369.2L242.4 292.5zM262.5 218.9C256.1 224.4 247.9 224.5 242.4 218.9L165.7 142.2C151.5 127.1 132.6 120.2 112.6 120.2H103.3L200.7 22.8C231.1-7.6 280.3-7.6 310.6 22.8L407.8 119.9H392.6C372.6 119.9 353.7 127.7 339.5 141.9L262.5 218.9zM112.6 142.7C126.4 142.7 139.1 148.3 149.7 158.1L226.4 234.8C233.6 241.1 243 245.6 252.5 245.6C261.9 245.6 271.3 241.1 278.5 234.8L355.5 157.8C365.3 148.1 378.8 142.5 392.6 142.5H430.3L488.6 200.8C518.9 231.1 518.9 280.3 488.6 310.6L430.3 368.9H392.6C378.8 368.9 365.3 363.3 355.5 353.5L278.5 276.5C264.6 262.6 240.3 262.6 226.4 276.6L149.7 353.2C139.1 363 126.4 368.6 112.6 368.6H80.8L22.8 310.6C-7.6 280.3-7.6 231.1 22.8 200.8L80.8 142.7H112.6z"
-                  />
-                </svg>
-                <p>Pix</p>
-              </button>
-
-              <button
-                data-js="metodo-cartao"
-                onclick="cardapio.metodos.alterarMetodoPagamento('cartao')"
-                class="btn btn-white btn-sm mr-3"
-              >
-                <i class="fas fa-credit-card"></i>
-                <p>Cartão</p>
-              </button>
-
-              <button
-                data-js="metodo-dinheiro"
-                onclick="cardapio.metodos.alterarMetodoPagamento('dinheiro')"
-                class="btn btn-white btn-sm mr-3"
-              >
-                <i class="fas fa-money-bill"></i>
-                <p>Dinheiro</p>
-              </button>
-            </div>
-
-            <div id="trocoContainer" class="form-group pl-2 hidden">
-              <label class="troco-title">Troco:</label>
-              <p class="texto-entrega">
-                Digite quanto você vai pagar em dinheiro para enviarmos o troco
-                (digite 0 caso não precise de troco)
-              </p>
-              <input id="troco" min="0" type="number" class="form-control" />
-            </div>
-          </div>
-
-          <div id="resumoCarrinho" class="row mr-0 ml-0 animated fadeIn hidden">
-            <div class="col-12">
-              <p class="title-carrinho mt-4">
-                <b>Itens do pedido:</b>
-              </p>
-            </div>
-
-            <div class="col-12">
-              <div class="row" id="listaItensResumo"></div>
-            </div>
-
-            <div class="col-12">
-              <p class="title-carrinho mt-4">
-                <b id="entregaLabel">Local da entrega:</b>
-              </p>
-            </div>
-
-            <div class="col-12 item-carrinho resumo">
-              <div class="img-map">
-                <i class="fas fa-map-marked-alt"></i>
-              </div>
-              <div class="dados-produto">
-                <p class="texto-endereco">
-                  <b id="resumoEndereco"></b>
-                </p>
-                <p class="cidade-endereco" id="cidadeEndereco"></p>
-              </div>
-            </div>
-
-            <div id="empresaMaps">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d245795.5082910491!2d-47.93735785!3d-15.72176215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3d18df9ae275%3A0x738470e469754a24!2zQnJhc8OtbGlhLCBERg!5e0!3m2!1spt-BR!2sbr!4v1703005105507!5m2!1spt-BR!2sbr"
-                width="600"
-                height="450"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
-
-            <div class="col-12" id="metodoPagamentoTitle">
-              <p class="title-carrinho mt-4">
-                <b>Método de pagamento:</b>
-              </p>
-            </div>
-
-            <div id="metodoPagamentoResumo"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="m-footer">
-        <div class="container">
-          <div class="container-total text-right mb-4">
-            <p class="mb-0">
-              <span>Subtotal:</span>
-              <span id="lblSubTotal">R$ 0,00</span>
+  <section class="banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-6 col-md-6 col-sm-12 col-one">
+          <div class="d-flex text-banner">
+            <h1 class="wow fadeInLeft">
+              <b>Escolha sua comida <b class="color-primary">favorita.</b></b>
+            </h1>
+            <p class="wow fadeInLeft delay-02s">
+              Aproveite nosso cardápio! Escolha o que desejar e recebe em sua
+              casa de forma rápida e segura.
             </p>
-            <p class="mb-0 texto-entrega" id="entregaP">
-              <span><i class="fas fa-motorcycle"></i> Entrega:</span>
-              <span id="lblValorEntrega">+ R$ 0,00</span>
-            </p>
-            <p class="mb-0 texto-total">
-              <span><b>Total:</b></span>
-              <span class="valor-total"><b id="lblValorTotal">R$ 0,00</b></span>
-            </p>
-          </div>
-
-          <div class="botoes">
-            <div class="comer-no-local-ou-entrega" id="btnEtapaPedido">
-              <a
-                onclick="cardapio.metodos.comerNoLocal()"
-                class="btn btn-yellow"
-                id="btnEtapaPedidoLocal"
-              >
-                Comer no local
-              </a>
-
-              <a
-                onclick="cardapio.metodos.carregarEndereco()"
-                class="btn btn-yellow"
-                id="btnEtapaPedidoEntrega"
-              >
-                Entrega
+            <div class="wow fadeIn delay-05s">
+              <a class="btn btn-yellow mt-4 mr-3"> Ver cardápio </a>
+              <a href="#" class="btn btn-white btn-icon-left mt-4" id="btnLigar">
+                <span class="icon-left">
+                  <i class="fa fa-phone"></i>
+                </span>
+                (61) 98324-4927
               </a>
             </div>
+          </div>
+          <a href="https://www.instagram.com/limafront/" target="_blank"
+            class="btn btn-sm btn-white btn-social mt-4 mr-3 wow fadeIn delay-05s">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a class="btn btn-sm btn-white btn-social mt-4 mr-3 wow fadeIn delay-05s">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a class="btn btn-sm btn-white btn-social mt-4 wow fadeIn delay-05s">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
 
-            <a
-              onclick="cardapio.metodos.voltarEtapa()"
-              class="btn btn-white hidden"
-              id="btnVoltar"
-            >
-              Voltar
-            </a>
-
-            <a
-              onclick="cardapio.metodos.resumoPedido()"
-              class="btn btn-yellow hidden"
-              id="btnEtapaEndereco"
-            >
-              Revisar pedido
-            </a>
-
-            <a
-              href="#"
-              class="btn btn-yellow hidden"
-              id="btnEtapaResumo"
-              target="_blank"
-            >
-              Enviar pedido
-            </a>
+        <div class="col-6 no-mobile">
+          <div class="card-banner wow fadeIn delay-02s"></div>
+          <div class="d-flex img-banner wow fadeIn delay-05s">
+            <img src="./img/burguer.png" />
+          </div>
+          <div class="card card-case wow fadeInRight delay-07s">
+            "Entrega rápida e funcionários simpáticos.
+            <br />A comida chegou quente e <br />
+            muito saborosa!"
+            <span class="card-case-name">
+              <b>Thiago Lopes</b>
+            </span>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="./js/modernizr-3.5.0.min.js"></script>
-    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="./js/popper.min.js"></script>
-    <script type="text/javascript" src="./js/wow.min.js"></script>
-    <script type="text/javascript" src="./js/dados.js"></script>
-    <script type="text/javascript" src="./js/app.js"></script>
+  <section class="servicos" id="servicos">
+    <div class="background-servicos"></div>
 
-    <script>
-      new WOW().init();
-    </script>
-  </body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-one text-center mb-5 wow fadeIn">
+          <span class="hint-title"><b>Serviços</b></span>
+          <h1 class="title">
+            <b>Como são nossos serviços?</b>
+          </h1>
+        </div>
+
+        <div class="col-12 col-lg-4 col-md-4 col-sm-12 col-one mb-5 wow fadeInUp">
+          <div class="card-icon text-center">
+            <img src="./img/icone-pedido.svg" width="150" />
+          </div>
+          <div class="card-text text-center mt-3">
+            <p><b>Fácil de pedir</b></p>
+            <span>
+              Você só precisa de alguns passos para pedir sua comida.
+            </span>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-4 col-md-4 col-sm-12 col-one mb-5 wow fadeInUp">
+          <div class="card-icon text-center">
+            <img src="./img/icone-delivery.svg" width="250" />
+          </div>
+          <div class="card-text text-center mt-3">
+            <p><b>Entrega rápida</b></p>
+            <span> Nossa entrega é sempre pontual, rápida e segura. </span>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-4 col-md-4 col-sm-12 col-one mb-5 wow fadeInUp">
+          <div class="card-icon text-center">
+            <img src="./img/icone-qualidade.svg" width="250" />
+          </div>
+          <div class="card-text text-center mt-3">
+            <p><b>Melhor qualidade</b></p>
+            <span>
+              Não só a rapidez na entrega, a qualidade também é o nosso forte.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cardapio" id="cardapio">
+    <div class="background-cardapio"></div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-one text-center mb-5 wow fadeIn">
+          <span class="hint-title"><b>Cardápio</b></span>
+          <h1 class="title">
+            <b>Conheça o nosso cardápio</b>
+          </h1>
+        </div>
+
+        <div class="col-12 col-one container-menu wow fadeInUp">
+          <a id="menu-burgers" class="btn btn-white btn-sm mr-3 active"
+            onclick="cardapio.metodos.obterItensCardapio('burgers')">
+            <i class="fas fa-hamburger"></i>&nbsp; Burgers
+          </a>
+          <a id="menu-pizzas" class="btn btn-white btn-sm mr-3" onclick="cardapio.metodos.obterItensCardapio('pizzas')">
+            <i class="fas fa-pizza-slice"></i>&nbsp; Pizzas
+          </a>
+          <a id="menu-churrasco" class="btn btn-white btn-sm mr-3"
+            onclick="cardapio.metodos.obterItensCardapio('churrasco')">
+            <i class="fas fa-drumstick-bite"></i>&nbsp; Churrasco
+          </a>
+          <a id="menu-steaks" class="btn btn-white btn-sm mr-3" onclick="cardapio.metodos.obterItensCardapio('steaks')">
+            <i class="fas fa-bacon"></i>&nbsp; Steaks
+          </a>
+          <a id="menu-bebidas" class="btn btn-white btn-sm mr-3"
+            onclick="cardapio.metodos.obterItensCardapio('bebidas')">
+            <i class="fas fa-cocktail"></i>&nbsp; Bebidas
+          </a>
+          <a id="menu-sobremesas" class="btn btn-white btn-sm mr-3"
+            onclick="cardapio.metodos.obterItensCardapio('sobremesas')">
+            <i class="fas fa-ice-cream"></i>&nbsp; Sobremesas
+          </a>
+        </div>
+
+        <div class="col-12 col-one">
+          <div class="row" id="itensCardapio"></div>
+        </div>
+
+        <div class="col-12 col-one text-center wow fadeInUp">
+          <a id="btnVerMais" class="btn btn-white btn-sm" onclick="cardapio.metodos.verMais()">
+            Ver mais
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="depoimentos" id="depoimentos">
+    <div class="background-depoimentos"></div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-5 no-mobile text-center">
+          <div class="card-depoimentos wow fadeIn"></div>
+          <div class="d-flex img-banner wow fadeInLeft delay-02s">
+            <img src="./img/pizzas.png" />
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-7 col-md-7 col-sm-12 col-one">
+          <span class="hint-title wow fadeIn"><b>Depoimentos</b></span>
+          <h1 class="title wow fadeIn">
+            <b>O que dizem sobre nós?</b>
+          </h1>
+          <div class="mb-5">
+            <div class="depoimento animated fadeIn" id="depoimento-1">
+              <div class="container-dados-depoimento">
+                <div class="imagem-depoimento"></div>
+                <div>
+                  <p class="nome-depoimento"><b>Diego Pereira</b></p>
+                  <p class="nota-depoimento">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>&nbsp;
+                    <span>4.5</span>
+                  </p>
+                </div>
+              </div>
+              <p class="texto-depoimento">
+                <i class="fas fa-quote-left"></i>
+                <span>
+                  Muito bom, recomendo demais! Comida muito bem feita pelo
+                  chefe, atendimento dentro dos parâmetros e boa comunicação
+                  com o cliente.
+                </span>
+                <i class="fas fa-quote-right"></i>
+              </p>
+            </div>
+
+            <div class="depoimento animated fadeIn hidden" id="depoimento-2">
+              <div class="container-dados-depoimento">
+                <div class="imagem-depoimento"></div>
+                <div>
+                  <p class="nome-depoimento"><b>Ana Beatriz</b></p>
+                  <p class="nota-depoimento">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>&nbsp; <span>5.0</span>
+                  </p>
+                </div>
+              </div>
+              <p class="texto-depoimento">
+                <i class="fas fa-quote-left"></i>
+                <span>
+                  Um jantar perfeito do começo ao fim. Comida, experiência,
+                  serviço... foi tão maravilhoso que fomos dois dias seguidos
+                  - fato inédito para mim em uma viagem.
+                </span>
+                <i class="fas fa-quote-right"></i>
+              </p>
+            </div>
+
+            <div class="depoimento animated fadeIn hidden" id="depoimento-3">
+              <div class="container-dados-depoimento">
+                <div class="imagem-depoimento"></div>
+                <div>
+                  <p class="nome-depoimento"><b>João Guilherme</b></p>
+                  <p class="nota-depoimento">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>&nbsp; <span>4.0</span>
+                  </p>
+                </div>
+              </div>
+              <p class="texto-depoimento">
+                <i class="fas fa-quote-left"></i>
+                <span>
+                  A comida estava excelente e o serviço gentil nos
+                  surpreendeu! Dica: reserve umas 3 horas para ter uma
+                  experiência incrível.
+                </span>
+                <i class="fas fa-quote-right"></i>
+              </p>
+            </div>
+          </div>
+
+          <a id="btnDepoimento-1" class="btn btn-sm btn-white btn-social wow fadeIn mr-3 active"
+            onclick="cardapio.metodos.abrirDepoimento(1)">1</a>
+          <a id="btnDepoimento-2" class="btn btn-sm btn-white btn-social wow fadeIn mr-3"
+            onclick="cardapio.metodos.abrirDepoimento(2)">2</a>
+          <a id="btnDepoimento-3" class="btn btn-sm btn-white btn-social wow fadeIn"
+            onclick="cardapio.metodos.abrirDepoimento(3)">3</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reserva" id="reservas">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-one">
+          <div class="card-secondary wow fadeInUp">
+            <div class="row">
+              <div class="col-12 col-lg-7 col-md-7 col-sm-12">
+                <span class="hint-title"><b>Reserva</b></span>
+                <h1 class="title">
+                  <b>Quer reservar um horário?</b>
+                </h1>
+                <p class="pr-5">
+                  Mande uma mensagem clicando no botão abaixo
+                  <br />
+                  Reserve sua data e horário de forma simples e rápida.
+                </p>
+                <a class="btn btn-yellow mt-4 wow fadeIn delay-05s" href="#" id="btnReserva" target="_blank">
+                  Fazer reserva
+                </a>
+              </div>
+
+              <div class="col-5 no-mobile">
+                <div class="card-reserva"></div>
+                <div class="d-flex img-banner">
+                  <img src="./img/icone-reserva.svg" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-3 col-md-3 col-sm-12 col-one container-logo-footer wow fadeIn">
+          <img class="logo-footer" src="./img/logo.png" />
+        </div>
+
+        <div class="col-12 col-lg-6 col-md-6 col-sm-12 col-one container-texto-footer wow fadeIn">
+          <p class="mb-0">
+            <b>Menu On-line</b> &copy; Todos os direitos reservados
+          </p>
+        </div>
+
+        <div class="col-12 col-lg-3 col-md-3 col-sm-12 col-one container-redes-footer wow fadeIn">
+          <a class="btn btn-sm btn-white btn-social mr-3">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a class="btn btn-sm btn-white btn-social mr-3">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a class="btn btn-sm btn-white btn-social">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-full animated fadeIn hidden" id="modalCarrinho">
+    <div class="m-header">
+      <div class="container">
+        <a class="btn btn-white btn-sm float-right" onclick="cardapio.metodos.abrirCarrinho(false)">
+          Fechar
+        </a>
+        <div class="etapas">
+          <div class="etapa etapa1 active">1</div>
+          <div class="etapa etapa2">2</div>
+          <div class="etapa etapa3">3</div>
+        </div>
+        <p class="title-carrinho mt-4">
+          <b id="lblTituloEtapa">Seu carrinho:</b>
+        </p>
+      </div>
+    </div>
+
+    <div class="m-body">
+      <div class="container" id="corpoPedido">
+        <div id="itensCarrinho" class="row mr-0 ml-0 mb-8 animated fadeIn hidden"></div>
+
+        <div class="container observacao-container" id="observacaoContainer">
+          <div class="form-group">
+            <label>Observação:</label>
+            <textarea id="observacao" class="form-control observacao" placeholder="ex: Tire as cebolas"></textarea>
+          </div>
+        </div>
+
+        <div class="hidden" id="reservaContainer">
+          <div class="form-group pl-2 hidden" id="nomeContainer">
+            <label class="troco-title">Qual seu nome?</label>
+            <p class="texto-entrega">
+              Vamos identificar seu pedido pelo nome.
+            </p>
+
+            <input id="nomeCliente" type="text" class="form-control" placeholder="ex: Willian" />
+          </div>
+
+          <div class="horario-e-pessoas">
+            <div class="form-group pl-2 hidden" id="horarioContainer">
+              <label class="troco-title">Em que horário?</label>
+
+              <input id="horario" type="time" class="form-control" placeholder="ex: 12:00"
+                style="-webkit-appearance: none; min-height: 40px;" />
+            </div>
+
+            <div class="form-group pl-2 hidden" id="pessoasContainer">
+              <label class="troco-title">Quantas pessoas?</label>
+
+              <input id="pessoas" min="0" max="100" type="number" class="form-control" placeholder="ex: 8" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 hidden" id="enderecoTitle">
+          <p class="title-carrinho mt-4">
+            <b>Endereço de entrega:</b>
+          </p>
+        </div>
+
+        <div id="localEntrega" class="row mr-0 ml-0 animated fadeIn hidden">
+          <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group container-cep">
+              <label>CEP:</label>
+              <input id="txtCEP" type="text" class="form-control" placeholder="ex: 12345678" />
+              <a class="btn btn-yellow btn-sm" onclick="cardapio.metodos.buscarCep()">
+                <i class="fa fa-search"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-8 no-mobile"></div>
+
+          <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <label>Endereço:</label>
+              <input id="txtEndereco" type="text" class="form-control" placeholder="ex: Rua José Azevedo" />
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>Bairro:</label>
+              <input id="txtBairro" type="text" class="form-control" placeholder="ex: José Azevedo" />
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-2 col-md-2 col-sm-12">
+            <div class="form-group">
+              <label>Número:</label>
+              <input id="txtNumero" type="text" class="form-control" placeholder="ex: 123" />
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <label>Cidade:</label>
+              <input id="txtCidade" type="text" class="form-control" placeholder="ex: São Paulo" />
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>Complemento:</label>
+              <input id="txtComplemento" type="text" class="form-control"
+                placeholder="ex: Bloco, casa, apartamento..." />
+            </div>
+          </div>
+        </div>
+
+        <div id="metodoPagamento" class="hidden">
+          <div class="col-12">
+            <p class="title-carrinho mt-4">
+              <b>Método de Pagamento:</b>
+            </p>
+          </div>
+
+          <div class="metodos pl-2">
+            <button data-js="metodo-pix" onclick="cardapio.metodos.alterarMetodoPagamento('pix')"
+              class="btn btn-white btn-sm btn-pagamento">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512">
+                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                <path
+                  d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C353.7 383.7 372.6 391.5 392.6 391.5H407.7L310.6 488.6C280.3 518.1 231.1 518.1 200.8 488.6L103.3 391.2H112.6C132.6 391.2 151.5 383.4 165.7 369.2L242.4 292.5zM262.5 218.9C256.1 224.4 247.9 224.5 242.4 218.9L165.7 142.2C151.5 127.1 132.6 120.2 112.6 120.2H103.3L200.7 22.8C231.1-7.6 280.3-7.6 310.6 22.8L407.8 119.9H392.6C372.6 119.9 353.7 127.7 339.5 141.9L262.5 218.9zM112.6 142.7C126.4 142.7 139.1 148.3 149.7 158.1L226.4 234.8C233.6 241.1 243 245.6 252.5 245.6C261.9 245.6 271.3 241.1 278.5 234.8L355.5 157.8C365.3 148.1 378.8 142.5 392.6 142.5H430.3L488.6 200.8C518.9 231.1 518.9 280.3 488.6 310.6L430.3 368.9H392.6C378.8 368.9 365.3 363.3 355.5 353.5L278.5 276.5C264.6 262.6 240.3 262.6 226.4 276.6L149.7 353.2C139.1 363 126.4 368.6 112.6 368.6H80.8L22.8 310.6C-7.6 280.3-7.6 231.1 22.8 200.8L80.8 142.7H112.6z" />
+              </svg>
+              <p>Pix</p>
+            </button>
+
+            <button data-js="metodo-cartao" onclick="cardapio.metodos.alterarMetodoPagamento('cartao')"
+              class="btn btn-white btn-sm btn-pagamento">
+              <i class="fas fa-credit-card"></i>
+              <p>Cartão</p>
+            </button>
+
+            <button data-js="metodo-dinheiro" onclick="cardapio.metodos.alterarMetodoPagamento('dinheiro')"
+              class="btn btn-white btn-sm btn-pagamento">
+              <i class="fas fa-money-bill"></i>
+              <p>Dinheiro</p>
+            </button>
+          </div>
+
+          <div id="trocoContainer" class="form-group pl-2 hidden">
+            <label class="troco-title">Troco:</label>
+            <p class="texto-entrega">
+              Digite quanto você vai pagar em dinheiro para enviarmos o troco.
+            </p>
+            <input id="troco" min="0" type="number" class="form-control" placeholder="ex: 200" />
+          </div>
+        </div>
+
+        <div id="resumoCarrinho" class="row mr-0 ml-0 animated fadeIn hidden">
+          <div>
+            <p class="title-carrinho mt-4">
+              <b>Itens do pedido:</b>
+            </p>
+          </div>
+
+          <div>
+            <div class="row" id="listaItensResumo"></div>
+          </div>
+
+          <div>
+            <p class="title-carrinho mt-4">
+              <b id="entregaLabel">Local da entrega:</b>
+            </p>
+          </div>
+
+          <div class="col-12 item-carrinho resumo" style="border: 0;">
+            <div class="img-map">
+              <i class="fas fa-map-marked-alt"></i>
+            </div>
+            <div class="dados-produto">
+              <p class="texto-endereco">
+                <b id="resumoEndereco"></b>
+              </p>
+              <p class="cidade-endereco" id="cidadeEndereco"></p>
+            </div>
+          </div>
+
+          <div class="pl-3 mt-3 rounded" id="empresaMaps" style="border-radius: 11px; overflow: hidden;">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d245795.5082910491!2d-47.93735785!3d-15.72176215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3d18df9ae275%3A0x738470e469754a24!2zQnJhc8OtbGlhLCBERg!5e0!3m2!1spt-BR!2sbr!4v1703005105507!5m2!1spt-BR!2sbr"
+              width="600" height="450" style="border: 0; border-radius: 11px" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+
+          <div id="metodoPagamentoTitle">
+            <p class="title-carrinho mt-4">
+              <b>Método de pagamento:</b>
+            </p>
+          </div>
+
+          <div id="metodoPagamentoResumo"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="m-footer">
+      <div class="container container-actions">
+        <div class="container-total text-right pt-0">
+          <p class="mb-0 mt-0">
+            <span>Subtotal:</span>
+            <span id="lblSubTotal">R$ 0,00</span>
+          </p>
+          <p class="mb-0 mt-0 texto-entrega hidden" id="entregaP">
+            <span><i class="fas fa-motorcycle"></i> Entrega:</span>
+            <span id="lblValorEntrega">+ R$ 0,00</span>
+          </p>
+          <p class="mb-0 mt-0 texto-total">
+            <span><b>Total:</b></span>
+            <span class="valor-total"><b id="lblValorTotal">R$ 0,00</b></span>
+          </p>
+        </div>
+
+        <div class="botoes">
+          <div class="comer-no-local-ou-entrega" id="btnEtapaPedido">
+            <a onclick="cardapio.metodos.irNoEstabelecimento('busca')" class="btn btn-yellow btn-sm"
+              id="btnEtapaPedidoBuscar">
+              <i class="fas fa-walking"></i>
+
+              Vou buscar
+            </a>
+
+            <a onclick="cardapio.metodos.irNoEstabelecimento('reserva')" class="btn btn-yellow btn-sm"
+              id="btnEtapaPedidoLocal">
+              <i class="fas fa-chair"></i>
+
+              Reservar
+            </a>
+
+            <a onclick="cardapio.metodos.carregarEndereco()" class="btn btn-yellow btn-sm" id="btnEtapaPedidoEntrega">
+              <i class="fas fa-motorcycle"></i>
+
+              Entrega
+            </a>
+          </div>
+
+          <a onclick="cardapio.metodos.voltarEtapa()" class="btn btn-white btn-sm hidden" id="btnVoltar">
+            Voltar
+          </a>
+
+          <a onclick="cardapio.metodos.resumoPedido()" class="btn btn-yellow btn-sm hidden" id="btnEtapaEndereco">
+            Revisar pedido
+          </a>
+
+          <a href="#" class="btn btn-yellow btn-sm hidden" id="btnEtapaResumo" target="_blank">
+            Enviar pedido
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+  <script type="text/javascript" src="./js/modernizr-3.5.0.min.js"></script>
+  <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./js/popper.min.js"></script>
+  <script type="text/javascript" src="./js/wow.min.js"></script>
+  <script type="text/javascript" src="./js/dados.js"></script>
+  <script type="text/javascript" src="./js/app.js"></script>
+
+  <script>
+    new WOW().init();
+  </script>
+</body>
+
 </html>
