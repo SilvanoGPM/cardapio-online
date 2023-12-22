@@ -14,7 +14,7 @@ var MEU_ENDERECO = null;
 var VALOR_CARRINHO = 0;
 var VALOR_ENTREGA = 7.5;
 
-var CELULAR_EMPRESA = "5587981356579";
+var CELULAR_EMPRESA = "5561983244927";
 var MAPS_URL = "https://maps.app.goo.gl/4j4RWfTnApDd9ifq7";
 
 var ENDERECO_EMPRESA = {
@@ -40,6 +40,18 @@ cardapio.eventos = {
     cardapio.metodos.obterItensCardapio();
     cardapio.metodos.carregarBotaoLigar();
     cardapio.metodos.carregarBotaoReserva();
+
+    var celular = CELULAR_EMPRESA;
+
+    celular = celular.replace("55", "");
+
+    let ddd = celular.slice(0, 2);
+    let parte1 = celular.slice(2, 7);
+    let parte2 = celular.slice(7);
+
+    let numeroFormatado = `(${ddd}) ${parte1}-${parte2}`;
+
+    $("#empresaNumero").text(numeroFormatado);
   },
 };
 
@@ -188,15 +200,6 @@ cardapio.metodos = {
     if (celular) {
       CELULAR_EMPRESA = celular;
 
-      celular = celular.replace("55", "");
-
-      let ddd = celular.slice(0, 2);
-      let parte1 = celular.slice(2, 7);
-      let parte2 = celular.slice(7);
-
-      let numeroFormatado = `(${ddd}) ${parte1}-${parte2}`;
-
-      $("#empresaNumero").text(numeroFormatado);
       cardapio.eventos.init();
     }
   },
